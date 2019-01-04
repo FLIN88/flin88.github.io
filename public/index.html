@@ -95,7 +95,7 @@
     root: '/',
     scheme: 'Gemini',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -229,7 +229,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/03/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/04/hello-world/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LIN">
@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/03/hello-world/" itemprop="url">THE FIRST</a></h1>
+                <a class="post-title-link" href="/2019/01/04/hello-world/" itemprop="url">THE FIRST</a></h1>
         
 
         <div class="post-meta">
@@ -260,8 +260,8 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2019-01-03T23:15:57+08:00">
-                2019-01-03
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2019-01-04T15:04:44+08:00">
+                2019-01-04
               </time>
             
 
@@ -300,10 +300,17 @@
       
         
           
-            <blockquote>
-<h1 id="2019-新年快樂！"><a href="#2019-新年快樂！" class="headerlink" title="2019 新年快樂！"></a>2019 新年快樂！</h1></blockquote>
-<h2 id="飞高飞大-快高快大"><a href="#飞高飞大-快高快大" class="headerlink" title="飞高飞大  快高快大"></a><strong><del>飞高飞大</del></strong>  快高快大</h2>
           
+2019 新年快樂！
+飛高飛大  快高快大
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/04/hello-world/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -433,20 +440,6 @@
   <span class="author" itemprop="copyrightHolder">LIN</span>
 
   
-</div>
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
-
-
 
 
         
@@ -459,11 +452,13 @@
 
         
       </div>
-    </footer>
+    </div></footer>
 
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     
@@ -491,12 +486,11 @@
   
 
 
-
-
-
-
   
-  
+
+
+
+
 
 
 
@@ -536,12 +530,7 @@
 
   
   
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
