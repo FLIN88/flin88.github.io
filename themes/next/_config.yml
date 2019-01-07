@@ -93,7 +93,7 @@ index_with_subtitle: false
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, question icon will be loaded.
 menu:
   home: / || home
-  #about: /about/ || user
+  about: /about/ || user
   #tags: /tags/ || tags
   #categories: /categories/ || th
   archives: /archives/ || archive
@@ -150,7 +150,7 @@ links_title: 牛逼網友
 links_layout: inline
 links:
   FERRYVAN: https://ferryvan.cn/
-  DYUME: https://dyume.cn/
+  DYUME: http://www.dyume.cn/
 
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.gif
