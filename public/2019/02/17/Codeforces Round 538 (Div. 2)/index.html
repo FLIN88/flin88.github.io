@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-hk">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #EFF643; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #EFF643, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #EFF643;    /*上边框颜色*/
+        border-left-color: #EFF643;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="數學,DP,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="簡要　C是簡單的數論實用技巧，D是典型的區間DP，E是卡隨機數的交互題">
+<meta name="keywords" content="數學,DP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Codeforces Round 538 (Div. 2)">
+<meta property="og:url" content="http://yoursite.com/2019/02/17/Codeforces Round 538 (Div. 2)/index.html">
+<meta property="og:site_name" content="LIN88">
+<meta property="og:description" content="簡要　C是簡單的數論實用技巧，D是典型的區間DP，E是卡隨機數的交互題">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2019-02-17T09:11:59.014Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Codeforces Round 538 (Div. 2)">
+<meta name="twitter:description" content="簡要　C是簡單的數論實用技巧，D是典型的區間DP，E是卡隨機數的交互題">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/17/Codeforces Round 538 (Div. 2)/">
+
+
+
+
+
+  <title>Codeforces Round 538 (Div. 2) | LIN88</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LIN88</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">KEEP REAL</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            關於
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/17/Codeforces Round 538 (Div. 2)/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LIN">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LIN88">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Codeforces Round 538 (Div. 2)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2019-02-17T16:56:34+08:00">
+                2019-02-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/ACM/" itemprop="url" rel="index">
+                    <span itemprop="name">ACM</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="簡要"><a href="#簡要" class="headerlink" title="簡要"></a>簡要</h2><p>　<strong>C是簡單的數論實用技巧，D是典型的區間DP，E是卡隨機數的交互題</strong><br>  <a id="more"></a></p>
+<h1 id="C-Trailing-Loves-or-L’oeufs"><a href="#C-Trailing-Loves-or-L’oeufs" class="headerlink" title="C. Trailing Loves (or L’oeufs?)"></a>C. Trailing Loves (or L’oeufs?)</h1><h2 id="題意"><a href="#題意" class="headerlink" title="題意"></a>題意</h2><p>　　給出兩個數 $n$、$b$ ，求 $n!$ 用 $b$ 進制表示時末尾有幾個零</p>
+<blockquote>
+<p>　<a href="http://codeforces.com/contest/1114/problem/C" target="_blank" rel="noopener">題目入口</a></p>
+</blockquote>
+<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>　　這裡的實質就是問 $n!$ 能整除 $b$ 多少次，這裡就有一個處理 $n!$ 的因子的技巧:<br>那就是對每個因子的，計算 $[1,n]$ 中有幾個 $b$ 、$b^2$ 、$b^3$ ……的倍數，把所有的個數加起來，就是 $n!$ 里因子 $b$ 的次數</p>
+<h2 id="AC-CODE"><a href="#AC-CODE" class="headerlink" title="AC CODE"></a>AC CODE</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line">ll n, b;</span><br><span class="line"><span class="built_in">vector</span>&lt;ll&gt; fac,num;<span class="comment">//fac素因子，num其對應的次數</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;b;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">2</span>;i*i&lt;=b;i++)		<span class="comment">//把b分解成素因子並記錄每個素因子的次數</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(b%i==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            ll cnt=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span>(b%i==<span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                b/=i;</span><br><span class="line">                cnt++;</span><br><span class="line">            &#125;</span><br><span class="line">            fac.push_back(i);</span><br><span class="line">			num.push_back(cnt);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(b&gt;<span class="number">1</span>)		<span class="comment">//如果分解不完全</span></span><br><span class="line">	&#123;</span><br><span class="line">		fac.push_back(b);</span><br><span class="line">		num.push_back(<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    ll ans=<span class="number">0x3f3f3f3f3f3f3f3f</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;fac.size();++i)<span class="comment">//對於每個因子</span></span><br><span class="line">    &#123;</span><br><span class="line">        ll cnt=<span class="number">0</span>;</span><br><span class="line">        ll t=n;</span><br><span class="line">        <span class="keyword">while</span>(t)	</span><br><span class="line">        &#123;</span><br><span class="line">            cnt+=t/fac[i];	<span class="comment">// t裡面 fac[i] 的倍數的個數</span></span><br><span class="line">            t/=fac[i];		<span class="comment">//除以 fac[i] 之後是 下次是計算 fac[i] 的次數加一</span></span><br><span class="line">        &#125;</span><br><span class="line">        cnt/=num[i];	<span class="comment">//最後該因子的個數，是b裡該因子的個數的幾倍</span></span><br><span class="line">        ans=min(ans,cnt);	<span class="comment">//取最小值就可以得到答案</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(fac.empty())		<span class="comment">//如果沒有因子</span></span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="number">0</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>這個處理 $n!$ 的因子的方法還是非常實用的</p>
+<h1 id="D-Flood-Fill"><a href="#D-Flood-Fill" class="headerlink" title="D. Flood Fill"></a>D. Flood Fill</h1><h2 id="題意-1"><a href="#題意-1" class="headerlink" title="題意"></a>題意</h2><p>　　給出一排塗了顏色的東西，每次可以把一串連續的相同顏色的東西都變成另一種顏色，問最少操作幾次可以把整排東西變成相同的顏色</p>
+<blockquote>
+<p>　<a href="http://codeforces.com/contest/1114/problem/D" target="_blank" rel="noopener">題目入口</a></p>
+</blockquote>
+<h2 id="題解-1"><a href="#題解-1" class="headerlink" title="題解"></a>題解</h2><p>　　其實單獨兩種顏色來看，比如 $RB$ ，要麼變成 $RR$ ，要麼變成 $BB$ ，把一排都變成一種顏色，都是從局部的兩種顏色變成一種顏色，且要麼變成跟左邊的同顏色，要麼變成跟右邊的相同顏色，這裡就是典型的區間DP。<br>用 $dp[l][r][0]$ 表示從 $l$ 到 $r$ 邊成與左邊同色的最少次數，用 $dp[l][r][1]$ 表示從 $l$ 到 $r$ 邊成與右邊同色的最少次數，那麼轉移方程如下  </p>
+<p><center> $dp[l][r][0]=min( dp[l+1][r][0]+(a[l]!=a[l+1]) , dp[l+1][r][1]+(a[l]!=a[r]) )$  </center></p>
+<p><center> $dp[l][r][1]=min( dp[l][r-1][0]+(a[r]!=a[l]) , dp[l][r-1][1]+(a[r-1]!=a[r]) )$  </center></p>
+<p>枚舉長度和左端點來進行狀態轉移，就是一個 $O(n^2)$ 的算法</p>
+<h2 id="AC-CODE-1"><a href="#AC-CODE-1" class="headerlink" title="AC CODE"></a>AC CODE</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">5050</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> a[N],dp[N][N][<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;++i)	<span class="comment">//枚舉長度</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j+i<span class="number">-1</span>&lt;=n;++j)<span class="comment">//枚舉左端點</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> l=j,r=j+i<span class="number">-1</span>;</span><br><span class="line">			dp[l][r][<span class="number">0</span>]=min(dp[l+<span class="number">1</span>][r][<span class="number">0</span>]+(a[l]!=a[l+<span class="number">1</span>]),dp[l+<span class="number">1</span>][r][<span class="number">1</span>]+(a[l]!=a[r]));</span><br><span class="line">			dp[l][r][<span class="number">1</span>]=min(dp[l][r<span class="number">-1</span>][<span class="number">0</span>]+(a[r]!=a[l]),dp[l][r<span class="number">-1</span>][<span class="number">1</span>]+(a[r<span class="number">-1</span>]!=a[r]));</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;min(dp[<span class="number">1</span>][n][<span class="number">0</span>],dp[<span class="number">1</span>][n][<span class="number">1</span>])&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="後記-1"><a href="#後記-1" class="headerlink" title="後記"></a>後記</h2><p>典型區間DP方式</p>
+<h1 id="E-Arithmetic-Progression"><a href="#E-Arithmetic-Progression" class="headerlink" title="E. Arithmetic Progression"></a>E. Arithmetic Progression</h1><h2 id="題意-2"><a href="#題意-2" class="headerlink" title="題意"></a>題意</h2><p>這是一道交互題。它有一個等差數列，但打亂了順序，告訴你有幾個數。可以有兩種提問</p>
+<ol>
+<li>“$&gt; x$” 如果數列中有 $&gt; x$ 的數，它輸出 $1$ ，否則輸出 $0$</li>
+<li>“$?$ $i$” 第 $i$ 個數的是什麼  </li>
+</ol>
+<p>你有60次提問機會，最後要告訴它最小的數，和這個等差數列的公差  </p>
+<blockquote>
+<p>　<a href="http://codeforces.com/contest/1114/problem/E" target="_blank" rel="noopener">題目入口</a></p>
+</blockquote>
+<h2 id="題解-2"><a href="#題解-2" class="headerlink" title="題解"></a>題解</h2><p>這題並沒有什麼特別的難點，直接用第一種提問在32次之內二分出數列的最大數，然後隨機提問第二個問題直到60次，把已知所有數兩兩作差$d_i$，求出所有$d_i$的GCD就是公差，就可算出最小的數了，這裡是一個求公差的小技巧<br>注意這裡的隨機，不用 mt19937 是過不了的！</p>
+<h2 id="AC-CODE-2"><a href="#AC-CODE-2" class="headerlink" title="AC CODE"></a>AC CODE</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,f,cnt;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">int</span> l=<span class="number">0</span>,r=<span class="number">1e9</span>,mid;</span><br><span class="line">	<span class="keyword">while</span>(r-l&gt;<span class="number">1</span>)	<span class="comment">//二分求最大值</span></span><br><span class="line">	&#123;</span><br><span class="line">		mid=(r+l)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"&gt; "</span>&lt;&lt;mid&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		fflush(<span class="built_in">stdout</span>);</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;f;</span><br><span class="line">		<span class="keyword">if</span>(f==<span class="number">-1</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span>(f)</span><br><span class="line">			l=mid;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			r=mid;</span><br><span class="line">		++cnt;</span><br><span class="line">	&#125;</span><br><span class="line">	mt19937 mt;	<span class="comment">//不用mt19937 ，用rand過不了</span></span><br><span class="line">	<span class="keyword">while</span>(s.size()&lt;n&amp;&amp;cnt&lt;<span class="number">60</span>)	<span class="comment">//隨機獲取數列裡的值</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> i=mt()%n+<span class="number">1</span>;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"? "</span>&lt;&lt;i&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		fflush(<span class="built_in">stdout</span>);</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;f;</span><br><span class="line">		<span class="keyword">if</span>(f==<span class="number">-1</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		s.insert(f);</span><br><span class="line">		++cnt;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> g=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;::iterator i=s.begin();i!=s.end();++i)</span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;::iterator j=s.begin();j!=s.end();++j)</span><br><span class="line">			g=__gcd(g,<span class="built_in">abs</span>(*i-*j));</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"! "</span>&lt;&lt;r-(n<span class="number">-1</span>)*g&lt;&lt;<span class="string">" "</span>&lt;&lt;g&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="後記-2"><a href="#後記-2" class="headerlink" title="後記"></a>後記</h2><p>記住求等差數列公差的小技巧，和，mt19937好用</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/數學/" rel="tag"># 數學</a>
+          
+            <a href="/tags/DP/" rel="tag"># DP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/26/POJ-2406 Power string/" rel="next" title="POJ-2406 Power String">
+                <i class="fa fa-chevron-left"></i> POJ-2406 Power String
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="LIN">
+            
+              <p class="site-author-name" itemprop="name">LIN</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分類</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">標籤</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:funterlin@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.instagram.com/funter_lin/" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                牛逼網友
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ferryvan.cn/" title="FERRYVAN" target="_blank">FERRYVAN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.dyume.cn/" title="DYUME" target="_blank">DYUME</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://kanadeshiina.github.io/" title="COMPUTE" target="_blank">COMPUTE</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#簡要"><span class="nav-number">1.</span> <span class="nav-text">簡要</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#C-Trailing-Loves-or-L’oeufs"><span class="nav-number"></span> <span class="nav-text">C. Trailing Loves (or L’oeufs?)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#題意"><span class="nav-number">1.</span> <span class="nav-text">題意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#題解"><span class="nav-number">2.</span> <span class="nav-text">題解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AC-CODE"><span class="nav-number">3.</span> <span class="nav-text">AC CODE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#後記"><span class="nav-number">4.</span> <span class="nav-text">後記</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#D-Flood-Fill"><span class="nav-number"></span> <span class="nav-text">D. Flood Fill</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#題意-1"><span class="nav-number">1.</span> <span class="nav-text">題意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#題解-1"><span class="nav-number">2.</span> <span class="nav-text">題解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AC-CODE-1"><span class="nav-number">3.</span> <span class="nav-text">AC CODE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#後記-1"><span class="nav-number">4.</span> <span class="nav-text">後記</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#E-Arithmetic-Progression"><span class="nav-number"></span> <span class="nav-text">E. Arithmetic Progression</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#題意-2"><span class="nav-number">1.</span> <span class="nav-text">題意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#題解-2"><span class="nav-number">2.</span> <span class="nav-text">題解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AC-CODE-2"><span class="nav-number">3.</span> <span class="nav-text">AC CODE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#後記-2"><span class="nav-number">4.</span> <span class="nav-text">後記</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LIN</span>
+
+  
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+
+</body>
+</html>
