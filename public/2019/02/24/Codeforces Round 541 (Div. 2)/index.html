@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-hk">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #EFF643; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #EFF643, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #EFF643;    /*上边框颜色*/
+        border-left-color: #EFF643;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="DP,字符串,圖論,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="簡要　C是簡單思維，D是有向圖最長路，E是思維遞推字符串，F是并查集加鏈錶">
+<meta name="keywords" content="DP,字符串,圖論">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Codeforces Round 541 (Div. 2)">
+<meta property="og:url" content="http://yoursite.com/2019/02/24/Codeforces Round 541 (Div. 2)/index.html">
+<meta property="og:site_name" content="LIN88">
+<meta property="og:description" content="簡要　C是簡單思維，D是有向圖最長路，E是思維遞推字符串，F是并查集加鏈錶">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2019-02-24T12:16:15.262Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Codeforces Round 541 (Div. 2)">
+<meta name="twitter:description" content="簡要　C是簡單思維，D是有向圖最長路，E是思維遞推字符串，F是并查集加鏈錶">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/24/Codeforces Round 541 (Div. 2)/">
+
+
+
+
+
+  <title>Codeforces Round 541 (Div. 2) | LIN88</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LIN88</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">KEEP REAL</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            關於
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/24/Codeforces Round 541 (Div. 2)/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LIN">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LIN88">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Codeforces Round 541 (Div. 2)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2019-02-24T20:07:45+08:00">
+                2019-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/ACM/" itemprop="url" rel="index">
+                    <span itemprop="name">ACM</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="簡要"><a href="#簡要" class="headerlink" title="簡要"></a>簡要</h2><p>　<strong>C是簡單思維，D是有向圖最長路，E是思維遞推字符串，F是并查集加鏈錶</strong><br>  <a id="more"></a></p>
+<h1 id="C-Birthday"><a href="#C-Birthday" class="headerlink" title="C. Birthday"></a>C. Birthday</h1><h2 id="題意"><a href="#題意" class="headerlink" title="題意"></a>題意</h2><p>　　給出一個數組，把所有數排成一圈，求如何排使得相鄰的數字的差的最大值最小，也就是波動最小</p>
+<blockquote>
+<p>　<a href="http://codeforces.com/contest/1131/problem/C" target="_blank" rel="noopener">題目入口</a></p>
+</blockquote>
+<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>說是思維，其實是亂來，只要把數組排序然後，把奇數編號的數順序輸出，接著再把偶數編號的數倒數輸出，AC</p>
+<h2 id="AC-CODE"><a href="#AC-CODE" class="headerlink" title="AC CODE"></a>AC CODE</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e6</span>+<span class="number">8</span>;</span><br><span class="line"><span class="keyword">int</span> a[N],f[N];</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">	sort(a+<span class="number">1</span>,a+<span class="number">1</span>+n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i+=<span class="number">2</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;a[i]&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">		f[i]=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=n;i&gt;<span class="number">0</span>;--i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(!f[i])</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[i]&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>開拓思維</p>
+<h1 id="D-Gourmet-choice"><a href="#D-Gourmet-choice" class="headerlink" title="D. Gourmet choice"></a>D. Gourmet choice</h1><h2 id="題意-1"><a href="#題意-1" class="headerlink" title="題意"></a>題意</h2><p>　　有兩個集合，給出任意的各自來自不同集合的兩個元素的大小比較關係，要求給每個元素賦值，如果能滿足，輸出使得元素之間滿足給出的關係，並且使得賦的最大的值最小</p>
+<blockquote>
+<p>　<a href="http://codeforces.com/contest/1131/problem/D" target="_blank" rel="noopener">題目入口</a></p>
+</blockquote>
+<h2 id="題解-1"><a href="#題解-1" class="headerlink" title="題解"></a>題解</h2><p>其實是個圖論題，把相等的元素用并查集縮點，然後進行拓撲排序，如果有環，則無法滿足這關係，如果沒有環，把元素最小的距離設為1，把每條邊的距離當做1，求所有元素的最長路徑距離，得到的距離就是答案</p>
+<h2 id="AC-CODE-1"><a href="#AC-CODE-1" class="headerlink" title="AC CODE"></a>AC CODE</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">2000</span>+<span class="number">8</span>;</span><br><span class="line"><span class="keyword">char</span> c[N][N];</span><br><span class="line"><span class="keyword">int</span> n,m,cnt;</span><br><span class="line"><span class="keyword">int</span> f[N],ran[N],in[N],dis[N],ans[N],head[N];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; L;</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">E</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> v,next;</span><br><span class="line">&#125;e[N*N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	in[v]++;</span><br><span class="line">	e[cnt].v=v;</span><br><span class="line">	e[cnt].next=head[u];</span><br><span class="line">	head[u]=cnt++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fi</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a==f[a]?a:f[a]=fi(f[a]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unite</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x=fi(a),y=fi(b);</span><br><span class="line">	<span class="keyword">if</span>(x==y)</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	<span class="keyword">if</span>(ran[x]&gt;ran[y])</span><br><span class="line">		f[y]=x;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(ran[x]==ran[y])</span><br><span class="line">			ran[y]++;</span><br><span class="line">		f[x]=y;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">topo</span><span class="params">()</span>		<span class="comment">//拓撲排序</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n+m;++i)</span><br><span class="line">		<span class="keyword">if</span>(fi(i)==i&amp;&amp;!in[fi(i)])</span><br><span class="line">		&#123;</span><br><span class="line">			q.push(fi(i));</span><br><span class="line">			dis[fi(i)]=<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">if</span>(q.empty())</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(!q.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> t=q.front();q.pop();</span><br><span class="line">		L.push_back(t);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=head[t];~i;i=e[i].next)</span><br><span class="line">		&#123;</span><br><span class="line">			in[e[i].v]--;</span><br><span class="line">			<span class="keyword">if</span>(!in[e[i].v])</span><br><span class="line">				q.push(e[i].v);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n+m;++i)</span><br><span class="line">		<span class="keyword">if</span>(fi(i)==i&amp;&amp;in[i])</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;L.size();++i)	<span class="comment">//按照拓撲序遞推出各個元素的最長距離</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> t=fi(L[i]);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=head[t];~j;j=e[j].next)</span><br><span class="line">			dis[e[j].v]=max(dis[e[j].v],dis[t]+<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n+m;++i)</span><br><span class="line">	&#123;</span><br><span class="line">		head[i]=<span class="number">-1</span>;</span><br><span class="line">		f[i]=i;</span><br><span class="line">		ran[i]=<span class="number">0</span>;</span><br><span class="line">		dis[i]=<span class="number">-0x3f3f3f3f</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%s"</span>,c[i]+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;++j)</span><br><span class="line">			<span class="keyword">if</span>(c[i][j]==<span class="string">'='</span>)</span><br><span class="line">				unite(i,n+j);		<span class="comment">//并查集縮點</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;++j)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(c[i][j]==<span class="string">'&lt;'</span>)	<span class="comment">//邊從小的指向大的，使得大的距離遠，滿足編號大</span></span><br><span class="line">				add(fi(i),fi(j+n));</span><br><span class="line">			<span class="keyword">if</span>(c[i][j]==<span class="string">'&gt;'</span>)</span><br><span class="line">				add(fi(j+n),fi(i));</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">if</span>(!topo())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"No"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"Yes"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n+m;++i)		<span class="comment">//把縮在一起的點的距離填回去</span></span><br><span class="line">		dis[i]=dis[fi(i)];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d "</span>,dis[i]);</span><br><span class="line">	<span class="built_in">puts</span>(<span class="string">""</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=n+<span class="number">1</span>;i&lt;=n+m;++i)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d "</span>,dis[i]);</span><br><span class="line">	<span class="built_in">puts</span>(<span class="string">""</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="後記-1"><a href="#後記-1" class="headerlink" title="後記"></a>後記</h2><p>有向無環圖最長路徑典型方法</p>
+<h1 id="E-Arithmetic-Progression"><a href="#E-Arithmetic-Progression" class="headerlink" title="E. Arithmetic Progression"></a>E. Arithmetic Progression</h1><h2 id="題意-2"><a href="#題意-2" class="headerlink" title="題意"></a>題意</h2><p>給出了兩個字符串的乘法的定義，求出所有字符串按順序相乘之後的最長連續相同字符段的長度。</p>
+<blockquote>
+<p>　<a href="http://codeforces.com/contest/1131/problem/E" target="_blank" rel="noopener">題目入口</a></p>
+</blockquote>
+<h2 id="題解-2"><a href="#題解-2" class="headerlink" title="題解"></a>題解</h2><p>觀察可得這個乘法具有結合律，也就是說順序并不影響結果，那麼可以從後面往前面乘，那樣容易計算乘之後的狀態轉移，從最後一個字符串開始往前遞推<br>容易知道最左邊和右邊的字符串永遠是排在最後面的那個字符串，我們只需要維護幾個數據：  </p>
+<ul>
+<li>$ll$ : 當前最左邊連續相同字符的長度</li>
+<li>$lr$ : 當前最右邊連續相同字符的長度</li>
+<li>$m$ : 當前內部最長連續相同字符的長度</li>
+<li>$f$ : 當前狀態是不是全由同一個字符組成，$f=1$ 表示是<br>考慮以下的情況下的狀態轉移</li>
+</ul>
+<ol>
+<li>當前是由同一個字符構成的，即 $f=1$ ，乘另一個字符串時，就看找出那個字符的最長連續相同字符段長度 $nm$<ul>
+<li>如果這個字符也是由同一個字符構成，且與當前串的那個字符相同時，那乘過去還是都由這個字符構成，且 $m=(nm+1)\times m+nm,ll=lr=m$ </li>
+<li>如果這個字符不是有同一個字符構成，那麼找出裡面當前的那個字符的最大連續長度，把當前的字符串插到那一段里，得到 $m=(nm+1)\times m+nm$，如果這個字符串的最左邊或最右邊的字符也跟當前的字符相同，且左邊的連續長度為 $nl$ ，右邊的為 $nr$ ，那麼可以擴張 $ll$ 和 $lr$ ，$ll=(nl+1)\times m+nl，lr=(nr+1)\times m+nr;$</li>
+</ul>
+</li>
+<li>如果當前由多個字符構成，即 $f=0$ ，乘另一個字符串，有以下的情況<ul>
+<li>如果 $l==r$ 那麼可以找出字符串中與這個字符相同的地方，把兩個當前串插入它兩邊，得到一段長度為 $ll+rr+1$ 的連續相同字符段</li>
+<li>如果 $l!=r$ 只有可能字符串中出現了 $l$($r$) 時，可組成 $ll+1$($lr+1$) 長度的連續相同字符段</li>
+<li>只要把 $m$ 一直取最大值就可以了，因為這是 $ll$ 和 $lr$ 并不能擴張，因為當前的串內部已經中斷了，而乘了之後兩邊一定是當前串</li>
+</ul>
+</li>
+</ol>
+<p>這道題的討論有點繁多，這就是難點，當然還有觀察出滿足結合律</p>
+<h2 id="AC-CODE-2"><a href="#AC-CODE-2" class="headerlink" title="AC CODE"></a>AC CODE</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">100000</span>+<span class="number">8</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="built_in">string</span> s[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cl</span><span class="params">(<span class="built_in">string</span> &amp;str)</span>	<span class="comment">//最左邊的連續相同字符的長度</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ret=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;str.length();++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(str[i]==str[<span class="number">0</span>])</span><br><span class="line">			ret++;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cr</span><span class="params">(<span class="built_in">string</span> &amp;str)</span>	<span class="comment">//最右邊的連續相同字符的長度</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ret=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=str.length()<span class="number">-2</span>;i&gt;=<span class="number">0</span>;--i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(str[i]==str[str.length()<span class="number">-1</span>])</span><br><span class="line">			ret++;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cf</span><span class="params">(<span class="built_in">string</span> &amp;str,<span class="keyword">char</span> c)</span>	<span class="comment">//求字符串中字符c的最大連續長度</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ret=<span class="number">0</span>,cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;str.length();++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(c==str[i])</span><br><span class="line">			cnt++;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			cnt=<span class="number">0</span>;</span><br><span class="line">		ret=max(ret,cnt);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cc</span><span class="params">(<span class="built_in">string</span> &amp;str)</span>	<span class="comment">//求字符串中最大連續同字符長度</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> c=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> ret=<span class="number">0</span>,cnt=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;str.length();++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(c==str[i])</span><br><span class="line">			cnt++;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			cnt=<span class="number">1</span>;</span><br><span class="line">		ret=max(ret,cnt);</span><br><span class="line">		c=str[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> l,r;	<span class="comment">//l是最后一個字符串的最左邊的字符，r是最右邊的字符,無論怎麼乘都不會改變</span></span><br><span class="line">	<span class="keyword">int</span> ll=<span class="number">1</span>,lr=<span class="number">1</span>,m=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">bool</span> f=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;s[i];</span><br><span class="line">	l=s[n][<span class="number">0</span>];				<span class="comment">//先求出當前的狀態</span></span><br><span class="line">	r=s[n][s[n].length()<span class="number">-1</span>];</span><br><span class="line">	ll=cl(s[n]);</span><br><span class="line">	lr=cr(s[n]);</span><br><span class="line">	m=cc(s[n]);</span><br><span class="line">	<span class="keyword">if</span>(ll==s[n].length())</span><br><span class="line">		f=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=n<span class="number">-1</span>;i&gt;<span class="number">0</span>;--i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(f)	<span class="comment">//當前由同一個字符構成</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> nm=cf(s[i],l);</span><br><span class="line">			<span class="keyword">if</span>(nm==s[i].length())	<span class="comment">//如果乘的字符也全由這個字符構成</span></span><br><span class="line">			&#123;</span><br><span class="line">				m=m*(nm+<span class="number">1</span>)+nm;</span><br><span class="line">				ll=lr=m;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span>	<span class="comment">//乘的字符由多種字符構成</span></span><br><span class="line">			&#123;</span><br><span class="line">				f=<span class="number">0</span>;</span><br><span class="line">				<span class="keyword">int</span> nl=cl(s[i]),nr=cr(s[i]);</span><br><span class="line">				<span class="keyword">if</span>(s[i][<span class="number">0</span>]==l)</span><br><span class="line">					ll=(nl+<span class="number">1</span>)*m+nl;</span><br><span class="line">				<span class="keyword">if</span>(s[i][s[i].length()<span class="number">-1</span>]==r)</span><br><span class="line">					lr=(nr+<span class="number">1</span>)*m+nr;</span><br><span class="line">				m=m*(nm+<span class="number">1</span>)+nm;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(l==r)	<span class="comment">//如果可以把左右兩端的連續段連起來</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;s[i].length();++j)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">if</span>(s[i][j]==l)</span><br><span class="line">						m=max(ll+lr+<span class="number">1</span>,m);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;s[i].length();++j)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">if</span>(s[i][j]==l)</span><br><span class="line">						m=max(m,ll+<span class="number">1</span>);</span><br><span class="line">					<span class="keyword">if</span>(s[i][j]==r)</span><br><span class="line">						m=max(m,lr+<span class="number">1</span>);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;m&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="後記-2"><a href="#後記-2" class="headerlink" title="後記"></a>後記</h2><p>多種情況的討論，需要耐心分析</p>
+<h1 id="F-Asya-And-Kittens"><a href="#F-Asya-And-Kittens" class="headerlink" title="F. Asya And Kittens"></a>F. Asya And Kittens</h1><h2 id="題意-3"><a href="#題意-3" class="headerlink" title="題意"></a>題意</h2><p>知道有一排數字，每個數字間一個隔板，隨後不斷給出兩個數的相鄰關係，給出關係后，它們之間的隔板就消失，成為同一個格子里的數，按照給出的相鄰關係，還原最開始的數字序列</p>
+<blockquote>
+<p>　<a href="http://codeforces.com/contest/1131/problem/F" target="_blank" rel="noopener">題目入口</a></p>
+</blockquote>
+<h2 id="題解-3"><a href="#題解-3" class="headerlink" title="題解"></a>題解</h2><p>只需要用并查集維護元素位置的合併，然後用鏈錶模擬相鄰元素的拼接，最後輸出鏈錶即可</p>
+<h2 id="AC-CODE-3"><a href="#AC-CODE-3" class="headerlink" title="AC CODE"></a>AC CODE</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">150000</span>+<span class="number">8</span>;</span><br><span class="line"><span class="keyword">int</span> f[N],ran[N],n;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">D</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> l,r,next;<span class="comment">//l和r是這個塊的最左邊的最右邊的元素，next是尾指針</span></span><br><span class="line">&#125;a[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fi</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x==f[x]?x:f[x]=fi(f[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unite</span><span class="params">(<span class="keyword">int</span> aa,<span class="keyword">int</span> bb)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x=fi(aa),y=fi(bb);</span><br><span class="line">	<span class="keyword">if</span>(x==y)</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	<span class="keyword">if</span>(ran[x]&gt;ran[y])	<span class="comment">//把y接到x上</span></span><br><span class="line">	&#123;</span><br><span class="line">		f[y]=x;	</span><br><span class="line">		a[a[y].r].next=a[x].l;	<span class="comment">//y的最右邊的尾指針指向x的最左邊</span></span><br><span class="line">		a[x].l=a[y].l;			<span class="comment">//x的最左邊變成y的最左邊那個</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>					<span class="comment">//把x接到y上，同理</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(ran[x]==ran[x])</span><br><span class="line">			ran[y]++;</span><br><span class="line">		f[x]=y;</span><br><span class="line">		a[a[x].r].next=a[y].l;</span><br><span class="line">		a[y].l=a[x].l;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">	&#123;</span><br><span class="line">		f[i]=i;</span><br><span class="line">		ran[i]=<span class="number">0</span>;</span><br><span class="line">		a[i].l=a[i].r=i;</span><br><span class="line">		a[i].next=<span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> x,y;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;x&gt;&gt;y;</span><br><span class="line">		unite(x,y);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)<span class="comment">//找出鏈錶最左邊那個元素</span></span><br><span class="line">		<span class="keyword">if</span>(fi(i)==i)</span><br><span class="line">			x=a[i].l;		</span><br><span class="line">	<span class="keyword">while</span>(x!=<span class="number">-1</span>)<span class="comment">//輸出整條鏈錶</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;x&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">		x=a[x].next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="後記-3"><a href="#後記-3" class="headerlink" title="後記"></a>後記</h2><p>注意鏈錶</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DP/" rel="tag"># DP</a>
+          
+            <a href="/tags/字符串/" rel="tag"># 字符串</a>
+          
+            <a href="/tags/圖論/" rel="tag"># 圖論</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/17/Codeforces Round 538 (Div. 2)/" rel="next" title="Codeforces Round 538 (Div. 2)">
+                <i class="fa fa-chevron-left"></i> Codeforces Round 538 (Div. 2)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="LIN">
+            
+              <p class="site-author-name" itemprop="name">LIN</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分類</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">標籤</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:funterlin@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.instagram.com/funter_lin/" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                牛逼網友
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ferryvan.cn/" title="FERRYVAN" target="_blank">FERRYVAN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.dyume.cn/" title="DYUME" target="_blank">DYUME</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://kanadeshiina.github.io/" title="COMPUTE" target="_blank">COMPUTE</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#簡要"><span class="nav-number">1.</span> <span class="nav-text">簡要</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#C-Birthday"><span class="nav-number"></span> <span class="nav-text">C. Birthday</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#題意"><span class="nav-number">1.</span> <span class="nav-text">題意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#題解"><span class="nav-number">2.</span> <span class="nav-text">題解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AC-CODE"><span class="nav-number">3.</span> <span class="nav-text">AC CODE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#後記"><span class="nav-number">4.</span> <span class="nav-text">後記</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#D-Gourmet-choice"><span class="nav-number"></span> <span class="nav-text">D. Gourmet choice</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#題意-1"><span class="nav-number">1.</span> <span class="nav-text">題意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#題解-1"><span class="nav-number">2.</span> <span class="nav-text">題解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AC-CODE-1"><span class="nav-number">3.</span> <span class="nav-text">AC CODE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#後記-1"><span class="nav-number">4.</span> <span class="nav-text">後記</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#E-Arithmetic-Progression"><span class="nav-number"></span> <span class="nav-text">E. Arithmetic Progression</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#題意-2"><span class="nav-number">1.</span> <span class="nav-text">題意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#題解-2"><span class="nav-number">2.</span> <span class="nav-text">題解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AC-CODE-2"><span class="nav-number">3.</span> <span class="nav-text">AC CODE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#後記-2"><span class="nav-number">4.</span> <span class="nav-text">後記</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#F-Asya-And-Kittens"><span class="nav-number"></span> <span class="nav-text">F. Asya And Kittens</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#題意-3"><span class="nav-number">1.</span> <span class="nav-text">題意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#題解-3"><span class="nav-number">2.</span> <span class="nav-text">題解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AC-CODE-3"><span class="nav-number">3.</span> <span class="nav-text">AC CODE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#後記-3"><span class="nav-number">4.</span> <span class="nav-text">後記</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LIN</span>
+
+  
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+
+</body>
+</html>
