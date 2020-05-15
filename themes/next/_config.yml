@@ -145,13 +145,13 @@ social_icons:
 
 # Blog rolls
 links_icon: link
-links_title: 牛逼網友
+#links_title: 牛逼網友
 #links_layout: block
-links_layout: inline
-links:
-  FERRYVAN: https://ferryvan.cn/
-  DYUME: http://www.dyume.cn/
-  COMPUTE: https://kanadeshiina.github.io/
+#links_layout: inline
+#links:
+#  FERRYVAN: https://ferryvan.cn/
+#  DYUME: http://www.dyume.cn/
+#  COMPUTE: https://kanadeshiina.github.io/
 
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.gif
