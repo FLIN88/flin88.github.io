@@ -82,7 +82,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="String,">
 
 
 
@@ -93,13 +93,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="LIN88">
-<meta property="og:url" content="http://yoursite.com/categories/文學/index.html">
+<meta name="description" content="簡要利用PAM增量構造的特點，可對Trie構建廣義PAM，獲取多串的迴文信息">
+<meta name="keywords" content="String">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Trie上構建的迴文樹——廣義PAM">
+<meta property="og:url" content="http://yoursite.com/2020/08/04/generalizedpam/index.html">
 <meta property="og:site_name" content="LIN88">
+<meta property="og:description" content="簡要利用PAM增量構造的特點，可對Trie構建廣義PAM，獲取多串的迴文信息">
 <meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2020-08-04T14:47:25.636Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LIN88">
+<meta name="twitter:title" content="Trie上構建的迴文樹——廣義PAM">
+<meta name="twitter:description" content="簡要利用PAM增量構造的特點，可對Trie構建廣義PAM，獲取多串的迴文信息">
 
 
 
@@ -129,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/文學/">
+  <link rel="canonical" href="http://yoursite.com/2020/08/04/generalizedpam/">
 
 
 
 
 
-  <title>分類: 文學 | LIN88</title>
+  <title>Trie上構建的迴文樹——廣義PAM | LIN88</title>
   
 
 
@@ -154,7 +159,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -258,53 +263,185 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>文學<small>分類</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/04/generalizedpam/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LIN">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LIN88">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/05/03/CapacityofLove/" itemprop="url">
-              
-                <span itemprop="name">《愛情的容量》周國平的愛情觀</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Trie上構建的迴文樹——廣義PAM</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-03T21:10:53+08:00" content="2019-05-03">
-          05-03
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-08-04T17:37:56+08:00">
+                2020-08-04
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="簡要"><a href="#簡要" class="headerlink" title="簡要"></a>簡要</h2><p><strong>利用PAM增量構造的特點，可對Trie構建廣義PAM，獲取多串的迴文信息</strong><br><a id="more"></a></p>
+<h2 id="PAM構造"><a href="#PAM構造" class="headerlink" title="PAM構造"></a>PAM構造</h2><p>PAM的增量構造過程：</p>
+<p>當前串 $S$ 長為 $L$ ，在尾部新增一個字符 $c$ ，即 $S_L=c$（標號從 $0$ 開始）</p>
+<ol>
+<li>從加入 $c$ 前後綴的最長迴文對應的PAM節點開始。</li>
+<li>記當前節點的迴文長度為 $len$ ，對比是否 $S_{L-1-len}=S_L$ 。</li>
+<li>若成立說明可在當前節點對應的迴文兩邊各加上一個 $c$ 構成的迴文即為當前後綴的最長迴文。</li>
+<li>若不成立跳到當前節點的 $fail$ 節點，即當前節點的迴文串的最長迴文後綴的節點，回到步驟2。</li>
+</ol>
+<p>以上過程只與加入 $c$ 前<strong>後綴最長迴文的節點</strong>、加入的<strong>字符 $c$</strong> 和<strong>前面的字符</strong>有關。</p>
+<h2 id="Trie上廣義PAM構造"><a href="#Trie上廣義PAM構造" class="headerlink" title="Trie上廣義PAM構造"></a>Trie上廣義PAM構造</h2><p>每個Trie的節點對應的串即為節點父親對應的串尾部新增所連邊的字符 $c$ 。因此加入此字符，就是用父親對應的PAM節點，執行加入 $c$ 的PAM構造過程。普通PAM中的 $S_{L-1-len}$  就是Trie節點的第 $len$ 祖先。</p>
+<p>用此方法即可正確構建Trie的PAM。</p>
+<h2 id="複雜度與優化"><a href="#複雜度與優化" class="headerlink" title="複雜度與優化"></a>複雜度與優化</h2><h4 id="普通PAM的均攤"><a href="#普通PAM的均攤" class="headerlink" title="普通PAM的均攤"></a>普通PAM的均攤</h4><p>在PAM的構造過程有暴力跳fail的過程，在單串的構造中這複雜度是通過均攤来保證為 $O(n)$ 級別的。因為只有形如 $”……aaaaaa…aaaa”$ 中加入一個非 $a$ 的字符才會導致多次跳 $fail$ ，而加入一個非 $a$ 字符後，$”……aaaaaa…aaaa”$ 的形狀就不再存在了。用 $O(n)$  級別的 $a$ 才形成 $O(n)$ 次暴力跳 $fail$ 。</p>
+<h4 id="廣義PAM的退化"><a href="#廣義PAM的退化" class="headerlink" title="廣義PAM的退化"></a>廣義PAM的退化</h4><p>但在Trie中會有鏈狀的 $O(n)$ 長度的 $”aaaa……aaaaa”$ 再在最後一個 $a$ 上接 $O(n)$ 個非 $a$ 字符，那么每個非 $a$ 字符都會導致 $O(n)$ 次跳 $fail$ ，總複雜度退化為 $O(n^2)$。</p>
+<h4 id="優化"><a href="#優化" class="headerlink" title="優化"></a>優化</h4><p>由於暴力跳 $fail$ 會導致複雜度退化。但可以發現，對於在一個PAM節點 $P$ 上，面對字符 $c$ 時比較失敗，就要跳 $fail$ ，到其最長迴文後綴去尋找，記從 $P$ 跳fail能到的節點集為 $G(P)$ ，$P$ 對應的迴文串為 $S(P)$ 。顯然 $G(P)$ 中所有節點的迴文長度都比 $P$ 的小，且都是 $S(P)$ 的真後綴。在這些點上對 $c$ 尋找節點時，都在 $S(P)$ 里面進行，往左看一定不會超出 $S(P)$ 。且 $S(P)$ 是確定的，那么在從 $P$ 跳 $fail$ 去找 $c$ 的可行節點是唯一的且不會變，則可記從 $P$ 點跳 $fail$ 對字符 $c$ 去找到的節點為 $f(P,c)$ 。</p>
+<p>當字符集較小時，則可以在對任一節點 $P$ 、任一字符 $c$ 第一次暴力跳 $fail$ 找到節點後，把 $f(P,c)$ 存下來。下一次可以在表中 $O(1)$ 取值。</p>
+<p>如此優化之後，每一個節點對每個字符只會跳一次 fail 。記字符集大小為 $|\sum|$ ,Trie的節點數為 n，則優化後複雜度為 $O(n|\sum|)$，與普通PAM為同一級別。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/String/" rel="tag"># String</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/13/CertainCase/" rel="next" title="經典算法之輸出方案">
+                <i class="fa fa-chevron-left"></i> 經典算法之輸出方案
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -312,6 +449,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -332,8 +473,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -411,6 +561,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#簡要"><span class="nav-number">1.</span> <span class="nav-text">簡要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PAM構造"><span class="nav-number">2.</span> <span class="nav-text">PAM構造</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Trie上廣義PAM構造"><span class="nav-number">3.</span> <span class="nav-text">Trie上廣義PAM構造</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#複雜度與優化"><span class="nav-number">4.</span> <span class="nav-text">複雜度與優化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#普通PAM的均攤"><span class="nav-number">4.0.1.</span> <span class="nav-text">普通PAM的均攤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#廣義PAM的退化"><span class="nav-number">4.0.2.</span> <span class="nav-text">廣義PAM的退化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#優化"><span class="nav-number">4.0.3.</span> <span class="nav-text">優化</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -544,6 +710,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
